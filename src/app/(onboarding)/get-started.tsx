@@ -3,13 +3,13 @@ import React from "react";
 import { OnboardingModal } from "@/components/OnboardingModal";
 import { StatusBar } from "expo-status-bar";
 
-export default function OnboardingIndex() {
+export default function GetStarted() {
   return (
     <>
       <StatusBar hidden />
       <Image
-        source={require("../../assets/images/onboarding-1.jpg")}
-        className="aspect-square w-full max-h-[50%]"
+        source={require("../../assets/images/onboarding-2.jpg")}
+        className="aspect-square w-full"
       />
       <OnboardingModal />
     </>

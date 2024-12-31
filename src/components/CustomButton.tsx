@@ -19,8 +19,8 @@ export const CustomButton = ({children, type='black', onPress, onLongPress, butt
 
 
   return (
-    <Pressable onPress={onPress} onLongPress={onLongPress} className={`rounded-md h-20 p-2 active:opacity-80 justify-center ${buttonClassName} ${bgColor} `} >
-      <Text className={`${textClassName} ${type === 'lightOrange' ? 'text-primary-default' : 'text-white'} text-center font-adelle-semibold text-xl`} >{children}</Text>
+    <Pressable onPress={onPress} onLongPress={onLongPress} className={`rounded-2xl h-16 p-2 active:opacity-80 justify-center ${buttonClassName} ${bgColor} `} >
+      <Text className={`${textClassName} ${type === 'lightOrange' ? 'text-primary-default' : 'text-white'} text-center font-adelle-semibold text-lg`} >{children}</Text>
     </Pressable>
   )
 }
