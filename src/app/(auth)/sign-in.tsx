@@ -12,11 +12,25 @@ export default function SignIn() {
   const [isEnabled, setIsEnabled] = useState(false);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const { SignIn, signUp } = useAuthContext();
+  const { signInWithPassword, session, loading, user, authError } = useAuthContext();
 
-
+  useEffect(() => {
+    if (session && !loading && user?.type === "user") {
+      router.replace("/main/groups");
+    } else if (session && !loading && user?.type === "admin") {
+      router.replace("/admin/groups");
+    }
+  }, [loading, session]);
 
   const toggleSwitch = () => setIsEnabled(!isEnabled);
+
+  const handleSignIn = async () => {
+    try {
+      await signInWithPassword(email, password);
+    } catch (e) {
+      console.error(e);
+    }
+  };
 
   return (
     <SafeAreaView className="p-4 h-full justify-start">
@@ -26,7 +40,7 @@ export default function SignIn() {
         </ThemedText>
         <CustomInput
           textContentType="emailAddress"
-          maxLength={20}
+          maxLength={50}
           placeholder="Type your email"
           icon="envelope-o"
           onChangeText={(text) => setEmail(text)}
@@ -39,6 +53,7 @@ export default function SignIn() {
           isPassword
           onChangeText={(text) => setPassword(text)}
         />
+      {authError ? <ThemedText className="text-red-500">{authError}</ThemedText> : ''}
 
         <View className="flex-row items-center justify-between mr-2">
           <View className="flex-row items-center">
@@ -62,14 +77,7 @@ export default function SignIn() {
           </Link>
         </View>
 
-        <CustomButton
-          buttonClassName="mt-10"
-          onPress={() => {
-            SignIn.signInWithPassword(email, password).then((data) =>
-              console.log(data)
-            );
-          }}
-        >
+        <CustomButton buttonClassName="mt-10" onPress={handleSignIn}>
           SIGN IN
         </CustomButton>
       </View>

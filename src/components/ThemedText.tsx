@@ -11,6 +11,7 @@ export const ThemedText = ({
   type = "p",
   className,
   color = "black",
+  ...props
 }: Props) => {
   const textStyles = {
     h1: "font-adelle-bold text-3xl",
@@ -25,6 +26,7 @@ export const ThemedText = ({
       className={` ${textStyles} ${
         color === "black" ? "text-black" : "text-white"
       } ${className}`}
+      {...props}
     >
       {children}
     </Text>

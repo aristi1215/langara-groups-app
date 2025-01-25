@@ -4,12 +4,19 @@ import { ThemedText } from "./ThemedText";
 import PagerView from "react-native-pager-view";
 import { router } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { useLocalAsyncStorage } from "@/hooks/useLocalAsyncStorage";
 
 type PagerViewRef = React.ElementRef<typeof PagerView>;
 
 export const OnboardingModal = () => {
   const ref = useRef<PagerViewRef>(null);
   const insets = useSafeAreaInsets();
+  const { setItem } = useLocalAsyncStorage('ONBOARDING_VIEWED');
+
+  const handleGoToSignUp = () => {
+    router.replace("/(auth)/sign-up");
+    setItem('ONBOARDING_VIEWED')
+  };
 
   return (
     <View
@@ -70,7 +77,7 @@ export const OnboardingModal = () => {
               <Pressable className={`bg-white/30 rounded-full h-3 w-3`} />
               <Pressable className="bg-white rounded-full h-3 w-3" />
             </View>
-            <Pressable onPress={() => router.replace("/(auth)/sign-up")}>
+            <Pressable onPress={handleGoToSignUp}>
               <ThemedText color="white">Next</ThemedText>
             </Pressable>
           </View>

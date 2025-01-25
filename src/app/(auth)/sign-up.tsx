@@ -1,17 +1,32 @@
 import { View, Switch, Pressable } from "react-native";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ThemedText } from "@/components/ThemedText";
 import { CustomInput } from "@/components/CustomInput";
-import { Link, router } from "expo-router";
+import { Link, Redirect, router } from "expo-router";
 import { CustomButton } from "../../components/CustomButton";
 import { SingInWith } from "@/components/SingInWith";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Text } from "react-native";
+import { useAuthContext } from "@/context/AuthContextProvider";
+
 
 export default function SignUp() {
   const [isEnabled, setIsEnabled] = useState(false);
+  const [fullName, setFullName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
 
   const toggleSwitch = () => setIsEnabled(!isEnabled);
+
+  const { signUpWithPassword, session, loading, user, authError} = useAuthContext();
+  
+
+ useEffect(() => {
+     if (session && !loading && user?.type === 'user') {
+       router.replace("/main/groups");
+     }else if(session && !loading && user?.type === 'admin'){
+       router.replace("/admin/groups");
+     }
+   }, [loading, session]);
 
   return (
     <SafeAreaView className="p-4 h-full justify-start">
@@ -24,12 +39,14 @@ export default function SignUp() {
           maxLength={20}
           placeholder="Type your full name"
           icon="user"
+          onChangeText={(text) => setFullName(text)}
         />
         <CustomInput
           textContentType="emailAddress"
-          maxLength={20}
+          maxLength={50}
           placeholder="Type your email"
           icon="envelope-o"
+          onChangeText={(text) => setEmail(text)}
         />
         <CustomInput
           textContentType="password"
@@ -37,7 +54,10 @@ export default function SignUp() {
           placeholder="Type your password"
           icon="envelope-o"
           isPassword
+          onChangeText={(text) => setPassword(text)}
         />
+
+      {authError ? <ThemedText className="text-red-500">{authError}</ThemedText> : ''}
 
         <View className="flex-row items-center justify-between mr-2">
           <View className="flex-row items-center">
@@ -47,7 +67,7 @@ export default function SignUp() {
               ios_backgroundColor="#3e3e3e"
               onValueChange={toggleSwitch}
               value={isEnabled}
-            />
+              />
             <ThemedText>Remember me</ThemedText>
           </View>
 
@@ -61,7 +81,9 @@ export default function SignUp() {
           </Link>
         </View>
 
-        <CustomButton buttonClassName="mt-10">SIGN UP</CustomButton>
+        <CustomButton buttonClassName="mt-10" onPress={() => signUpWithPassword(email, password, fullName)}>
+          SIGN UP
+        </CustomButton>
       </View>
 
       <View className="justify-between mt-20 gap-10">
@@ -78,16 +100,15 @@ export default function SignUp() {
         </View>
 
         <View className="flex-row justify-center">
-        <ThemedText type="p" className="text-center text-lg">
-          Don't have an account?{" "}
-        </ThemedText>
-          <Pressable onPress={() =>  router.push('/(auth)/sign-in')}>
+          <ThemedText type="p" className="text-center text-lg">
+            Don't have an account?{" "}
+          </ThemedText>
+          <Pressable onPress={() => router.push("/(auth)/sign-in")}>
             <ThemedText type="p" className=" text-lg text-primary-default">
               Sign In
             </ThemedText>
           </Pressable>
         </View>
-
       </View>
     </SafeAreaView>
   );

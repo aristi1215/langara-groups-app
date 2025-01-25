@@ -1,5 +1,5 @@
-const createErrors = (name) => class BusinessError extends Error {
-    constructor(message) {
+const createErrors = (name:string) => class BusinessError extends Error {
+    constructor(message:string) {
         super(message)
         this.name = name
     }

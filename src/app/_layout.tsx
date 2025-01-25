@@ -28,47 +28,51 @@ export default function RootLayout() {
 
   return (
     <AuthContextProvider>
-    <Stack>
-      <Stack.Screen
-        name="(onboarding)"
-        options={{
-          headerShown: true,
-          title: "",
-          headerLeft: () => (
-            <Image
-              source={require("../assets/images/langara-logo.png")}
-              className="w-40 h-10"
-            />
-          ),
-        }}
-      />
-      <Stack.Screen
-        name="(auth)/sign-up"
-        options={{
-          header: () => {
-            return (
-              <CustomBackHeader
-                className="flex-row items-center px-5 pt-5"
-                title="Sign up"
+      <Stack>
+        <Stack.Screen
+          name="(onboarding)"
+          options={{
+            headerShown: true,
+            title: "",
+            headerLeft: () => (
+              <Image
+                source={require("../assets/images/langara-logo.png")}
+                className="w-40 h-10"
               />
-            );
-          },
-        }}
-      />
-      <Stack.Screen
-        name="(auth)/sign-in"
+            ),
+          }}
+        />
+        <Stack.Screen
+          name="(auth)/sign-up"
+          options={{
+            header: () => {
+              return (
+                <CustomBackHeader
+                  className="flex-row items-center px-5 pt-5"
+                  title="Sign up"
+                />
+              );
+            },
+          }}
+        />
+        <Stack.Screen
+          name="(auth)/sign-in"
+          options={{
+            header: () => {
+              return (
+                <CustomBackHeader
+                  className="flex-row items-center px-5 pt-5"
+                  title="Sign in"
+                />
+              );
+            },
+          }}
+        />
+        <Stack.Screen name="main"
         options={{
-          header: () => {
-            return (
-              <CustomBackHeader
-                className="flex-row items-center px-5 pt-5"
-                title="Sign in"
-              />
-            );
-          },
-        }}
-      />
-    </Stack>
+          headerShown: false
+        }} />
+      </Stack>
     </AuthContextProvider>
   );
 }
