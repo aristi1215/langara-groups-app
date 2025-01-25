@@ -8,25 +8,24 @@ import { SingInWith } from "@/components/SingInWith";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthContext } from "@/context/AuthContextProvider";
 
-
 export default function SignUp() {
   const [isEnabled, setIsEnabled] = useState(false);
-  const [fullName, setFullName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [fullName, setFullName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const toggleSwitch = () => setIsEnabled(!isEnabled);
 
-  const { signUpWithPassword, session, loading, user, authError} = useAuthContext();
-  
+  const { signUpWithPassword, session, loading, user, authError } =
+    useAuthContext();
 
- useEffect(() => {
-     if (session && !loading && user?.type === 'user') {
-       router.replace("/main/groups");
-     }else if(session && !loading && user?.type === 'admin'){
-       router.replace("/admin/groups");
-     }
-   }, [loading, session]);
+  useEffect(() => {
+    if (session && !loading && user?.type === "user") {
+      router.replace("/main/groups");
+    } else if (session && !loading && user?.type === "admin") {
+      router.replace("/admin/groups");
+    }
+  }, [loading, session]);
 
   return (
     <SafeAreaView className="p-4 h-full justify-start">
@@ -57,7 +56,11 @@ export default function SignUp() {
           onChangeText={(text) => setPassword(text)}
         />
 
-      {authError ? <ThemedText className="text-red-500">{authError}</ThemedText> : ''}
+        {authError ? (
+          <ThemedText className="text-red-500">{authError}</ThemedText>
+        ) : (
+          ""
+        )}
 
         <View className="flex-row items-center justify-between mr-2">
           <View className="flex-row items-center">
@@ -67,7 +70,7 @@ export default function SignUp() {
               ios_backgroundColor="#3e3e3e"
               onValueChange={toggleSwitch}
               value={isEnabled}
-              />
+            />
             <ThemedText>Remember me</ThemedText>
           </View>
 
@@ -81,7 +84,11 @@ export default function SignUp() {
           </Link>
         </View>
 
-        <CustomButton buttonClassName="mt-10" onPress={() => signUpWithPassword(email, password, fullName)}>
+        <CustomButton
+          buttonClassName="mt-10"
+          onPress={() => signUpWithPassword(email, password, fullName)}
+          disabled={loading}
+        >
           SIGN UP
         </CustomButton>
       </View>

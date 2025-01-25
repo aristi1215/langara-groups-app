@@ -8,11 +8,13 @@ import { SingInWith } from "@/components/SingInWith";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthContext } from "@/context/AuthContextProvider";
 
+
 export default function SignIn() {
   const [isEnabled, setIsEnabled] = useState(false);
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
-  const { signInWithPassword, session, loading, user, authError } = useAuthContext();
+  const { signInWithPassword, session, loading, user, authError } =
+    useAuthContext();
 
   useEffect(() => {
     if (session && !loading && user?.type === "user") {
@@ -53,7 +55,11 @@ export default function SignIn() {
           isPassword
           onChangeText={(text) => setPassword(text)}
         />
-      {authError ? <ThemedText className="text-red-500">{authError}</ThemedText> : ''}
+        {authError ? (
+          <ThemedText className="text-red-500">{authError}</ThemedText>
+        ) : (
+          ""
+        )}
 
         <View className="flex-row items-center justify-between mr-2">
           <View className="flex-row items-center">
@@ -77,7 +83,11 @@ export default function SignIn() {
           </Link>
         </View>
 
-        <CustomButton buttonClassName="mt-10" onPress={handleSignIn}>
+        <CustomButton
+          buttonClassName="mt-10"
+          onPress={handleSignIn}
+          disabled={loading}
+        >
           SIGN IN
         </CustomButton>
       </View>
