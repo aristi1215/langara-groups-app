@@ -7,7 +7,11 @@ import { CustomButton } from "../../components/CustomButton";
 import { SingInWith } from "@/components/SingInWith";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthContext } from "@/context/AuthContextProvider";
-
+import {
+  GoogleSignin,
+  GoogleSigninButton,
+  statusCodes,
+} from "@react-native-google-signin/google-signin";
 
 export default function SignIn() {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -103,6 +107,7 @@ export default function SignIn() {
           <SingInWith company="apple" />
           <SingInWith company="facebook" />
           <SingInWith company="google" />
+          <GoogleSigninButton />
         </View>
 
         <View className="flex-row justify-center">
