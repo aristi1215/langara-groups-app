@@ -1,4 +1,4 @@
-import { View, Switch, Pressable } from "react-native";
+import { View, Switch, Pressable, ActivityIndicator } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { ThemedText } from "@/components/ThemedText";
 import { CustomInput } from "@/components/CustomInput";
@@ -25,10 +25,15 @@ export default function SignUp() {
     } else if (session && !loading && user?.type === "admin") {
       router.replace("/admin/groups");
     }
-  }, [loading, session]);
+  }, [loading, session, user]);
 
   return (
-    <SafeAreaView className="p-4 h-full justify-start">
+
+    loading ? <View className='flex-1 items-center justify-center'>
+      <ActivityIndicator />
+    </View> :  
+
+   ( <SafeAreaView className="p-4 h-full justify-start">
       <View className=" gap-4">
         <ThemedText type="p" className="text-gray-500 ml-2 mb-2">
           Create account and enjoy all services
@@ -117,6 +122,6 @@ export default function SignUp() {
           </Pressable>
         </View>
       </View>
-    </SafeAreaView>
+    </SafeAreaView>)
   );
 }

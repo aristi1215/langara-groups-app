@@ -1,17 +1,12 @@
-import { View, Switch, Pressable } from "react-native";
+import { View, Switch, Pressable, ActivityIndicator } from 'react-native';
 import React, { useEffect, useState } from "react";
 import { ThemedText } from "@/components/ThemedText";
 import { CustomInput } from "@/components/CustomInput";
 import { Link, router } from "expo-router";
 import { CustomButton } from "../../components/CustomButton";
-import { SingInWith } from "@/components/SingInWith";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useAuthContext } from "@/context/AuthContextProvider";
-import {
-  GoogleSignin,
-  GoogleSigninButton,
-  statusCodes,
-} from "@react-native-google-signin/google-signin";
+import GoogleButtonSignIn from '@/components/Auth/GoogleSignIn'
 
 export default function SignIn() {
   const [isEnabled, setIsEnabled] = useState(false);
@@ -26,7 +21,7 @@ export default function SignIn() {
     } else if (session && !loading && user?.type === "admin") {
       router.replace("/admin/groups");
     }
-  }, [loading, session]);
+  }, [loading, session, user]);
 
   const toggleSwitch = () => setIsEnabled(!isEnabled);
 
@@ -39,7 +34,11 @@ export default function SignIn() {
   };
 
   return (
-    <SafeAreaView className="p-4 h-full justify-start">
+
+    loading ? <View className='flex-1 items-center justify-center'>
+      <ActivityIndicator/>
+    </View> :
+   ( <SafeAreaView className="p-4 h-full justify-start">
       <View className=" gap-4">
         <ThemedText type="p" className="text-gray-500 ml-2 mb-2">
           Give credentials to sign in your account
@@ -104,10 +103,7 @@ export default function SignIn() {
         </View>
 
         <View className="flex-row w-full justify-evenly">
-          <SingInWith company="apple" />
-          <SingInWith company="facebook" />
-          <SingInWith company="google" />
-          <GoogleSigninButton />
+          <GoogleButtonSignIn />
         </View>
 
         <View className="flex-row justify-center">
@@ -121,6 +117,6 @@ export default function SignIn() {
           </Pressable>
         </View>
       </View>
-    </SafeAreaView>
+    </SafeAreaView>)
   );
 }

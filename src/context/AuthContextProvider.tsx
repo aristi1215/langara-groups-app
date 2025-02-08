@@ -102,6 +102,8 @@ export const AuthContextProvider = ({ children }: { children: ReactNode }) => {
       setAuthError('All the fields must be filled')
       return
     }
+
+
     const { error } = await supabase.auth.signUp({
       email,
       password,

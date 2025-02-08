@@ -5,6 +5,11 @@ import { useEffect } from "react";
 import { Image } from "react-native";
 import { CustomBackHeader } from "@/components/CustomBackHeader";
 import { AuthContextProvider } from "@/context/AuthContextProvider";
+import {
+  QueryClient,
+  QueryClientProvider,
+  useQuery,
+} from "@tanstack/react-query";
 
 SplashScreen.preventAutoHideAsync();
 
@@ -26,53 +31,65 @@ export default function RootLayout() {
     }
   }, [loadedFont, error]);
 
+  const queryClient = new QueryClient();
+
   return (
-    <AuthContextProvider>
-      <Stack>
-        <Stack.Screen
-          name="(onboarding)"
-          options={{
-            headerShown: true,
-            title: "",
-            headerLeft: () => (
-              <Image
-                source={require("../assets/images/langara-logo.png")}
-                className="w-40 h-10"
-              />
-            ),
-          }}
-        />
-        <Stack.Screen
-          name="(auth)/sign-up"
-          options={{
-            header: () => {
-              return (
-                <CustomBackHeader
-                  className="flex-row items-center px-5 pt-5"
-                  title="Sign up"
+    <QueryClientProvider client={queryClient}>
+      <AuthContextProvider>
+        <Stack>
+          <Stack.Screen
+            name="(onboarding)"
+            options={{
+              headerShown: true,
+              title: "",
+              headerLeft: () => (
+                <Image
+                  source={require("../assets/images/langara-logo.png")}
+                  className="w-40 h-10"
                 />
-              );
-            },
-          }}
-        />
-        <Stack.Screen
-          name="(auth)/sign-in"
-          options={{
-            header: () => {
-              return (
-                <CustomBackHeader
-                  className="flex-row items-center px-5 pt-5"
-                  title="Sign in"
-                />
-              );
-            },
-          }}
-        />
-        <Stack.Screen name="main"
-        options={{
-          headerShown: false
-        }} />
-      </Stack>
-    </AuthContextProvider>
+              ),
+            }}
+          />
+          <Stack.Screen
+            name="(auth)/sign-up"
+            options={{
+              header: () => {
+                return (
+                  <CustomBackHeader
+                    className="flex-row items-center px-5 pt-5"
+                    title="Sign up"
+                  />
+                );
+              },
+            }}
+          />
+          <Stack.Screen
+            name="(auth)/sign-in"
+            options={{
+              header: () => {
+                return (
+                  <CustomBackHeader
+                    className="flex-row items-center px-5 pt-5"
+                    title="Sign in"
+                  />
+                );
+              },
+            }}
+          />
+          <Stack.Screen
+            name="main"
+            options={{
+              headerShown: false,
+            }}
+          />
+          <Stack.Screen
+            name="index"
+            options={{
+              headerShown: false,
+            }}
+          />
+        </Stack>
+      </AuthContextProvider>
+    </QueryClientProvider>
   );
 }

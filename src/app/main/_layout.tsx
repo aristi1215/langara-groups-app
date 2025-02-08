@@ -14,7 +14,9 @@ export default function TabsLayout() {
   return (
     <Tabs>
       <Tabs.Screen name="groups/index" options={{ headerShown: false }} />
-      <Tabs.Screen name="events/index" />
+      <Tabs.Screen name="myGroups/index" options={{ headerShown: false }} />
+      <Tabs.Screen name="shop/index" options={{ headerShown: false }} />
+      <Tabs.Screen name="myGroups/[id]" options={{ href:null }} />
       <Tabs.Screen name="index" options={{href: null}} />
     </Tabs>
   );
