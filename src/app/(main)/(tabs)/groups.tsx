@@ -8,6 +8,7 @@ import { SmallGroupCard } from "@/components/groups/SmallGroupCard";
 import { ActivityIndicator } from "react-native";
 import { useGroups } from "@/api/groups";
 import { Link } from "expo-router";
+import { SearchInput } from "@/components/SearchInput";
 
 export default function Index() {
 
@@ -23,7 +24,7 @@ export default function Index() {
     console.error(error)
     return (<View className="flex-1 items-center justify-center">
       <ThemedText type="h2">Sorry, and error has occurred</ThemedText>
-      <Link href={'/main/groups'}>Go back</Link>
+      <Link href={'/(main)/(tabs)/groups'}>Go back</Link>
     </View>)
   }
 
@@ -43,14 +44,7 @@ export default function Index() {
           </View>
         </View>
 
-        <View className="flex-row items-center">
-          <SearchIcon size={20} className="absolute ml-5" color="white" />
-          <TextInput
-            className="bg-gray-200/20 w-full rounded-xl pl-14 h-14"
-            placeholder="Find your preferred groups"
-            placeholderTextColor={"white"}
-          />
-        </View>
+        <SearchInput />
       </View>
 
       <View className="mt-10">

@@ -77,7 +77,7 @@ export default function RootLayout() {
             }}
           />
           <Stack.Screen
-            name="main"
+            name="(main)"
             options={{
               headerShown: false,
             }}

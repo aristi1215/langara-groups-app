@@ -23,7 +23,7 @@ export default function MyGroupsScreen() {
     return (
       <View className="flex-1 items-center justify-center">
         <ThemedText type="h2">Sorry, and error has occurred</ThemedText>
-        <Link href={"/main/myGroups"}>Go back</Link>
+        <Link href={"/groups"}>Go back</Link>
       </View>
     );
   }

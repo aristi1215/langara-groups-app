@@ -2,5 +2,5 @@ import React from 'react'
 import { Redirect } from 'expo-router'
 
 export default function index() {
-  return <Redirect href={'/main/groups'} />
+  return <Redirect href={'/(main)/(tabs)/groups'} />
 }

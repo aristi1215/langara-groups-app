@@ -21,7 +21,7 @@ export default function SignUp() {
 
   useEffect(() => {
     if (session && !loading && user?.type === "user") {
-      router.replace("/main/groups");
+      router.replace("/(main)/(tabs)/groups");
     } else if (session && !loading && user?.type === "admin") {
       router.replace("/admin/groups");
     }

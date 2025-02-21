@@ -8,6 +8,7 @@ import React, {
 import { supabase } from "@/client/supabase";
 import { AuthError, Session } from "@supabase/supabase-js";
 import { ValidationError } from "@/errors/errors";
+import { Tables } from "@/types/supabase/database.types";
 
 interface AuthContextType {
   signInWithPassword: (email: string, password: string) => Promise<any>;
@@ -18,7 +19,7 @@ interface AuthContextType {
     fullName: string
   ) => Promise<void>;
   session: Session | null;
-  user: any;
+  user: Tables<'profiles'>;
   loading: boolean;
   authError: string;
 }

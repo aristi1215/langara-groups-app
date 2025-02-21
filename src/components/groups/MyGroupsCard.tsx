@@ -10,8 +10,9 @@ interface Props {
 }
 
 export const MyGroupsCard = ({name, members=10, id}: Props) => {
+  // router.push(`/main/myGroups/${id})`
   return (
-    <Pressable onPress={() => router.push(`/main/myGroups/${id}`)} >
+    <Pressable onPress={() => router.push(`/(main)/myGroups/${id}`)} >
     <View className={`bg-white rounded-3xl w-[22rem] h-[20rem] p-5`} >
       <Image
         // source={imageUrl ? {uri: imageUrl} : require('@/assets/images/langara-logo.png')}
