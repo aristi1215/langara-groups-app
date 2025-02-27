@@ -1,6 +1,7 @@
 import { useAuthContext } from "@/context/AuthContextProvider";
 import { router, Tabs, usePathname } from "expo-router";
 import { useEffect } from "react";
+import { Groups, Find, Shop } from "@/assets/icons/icons";
 
 export default function TabsLayout() {
   const { session, loading } = useAuthContext();
@@ -13,9 +14,9 @@ export default function TabsLayout() {
 
   return (
     <Tabs>
-      <Tabs.Screen name="groups" options={{ headerShown: false }} />
-      <Tabs.Screen name="myGroups" options={{ headerShown: false }} />
-      <Tabs.Screen name="shop" options={{ headerShown: false }} />
+      <Tabs.Screen name="groups" options={{ headerShown: false, tabBarIcon: () => <Find /> }} />
+      <Tabs.Screen name="myGroups" options={{ headerTitle: 'My groups', tabBarIcon: () => <Groups /> }} />
+      <Tabs.Screen name="shop" options={{ headerShown: false, tabBarIcon: () => <Shop /> }} />
     </Tabs>
   );
 }

@@ -24,7 +24,7 @@ export const GroupCard = ({
   const handleJoinGroup = (data: {userId: string, groupId: number}) => {
     joinGroup(data, {
       onSuccess: async () => {
-        router.push(`/main/myGroups/${{name, id}}`)
+        router.push(`/(main)/myGroups/${id}`)
       }
     })
   }

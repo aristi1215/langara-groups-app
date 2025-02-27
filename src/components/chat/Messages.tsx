@@ -30,7 +30,7 @@ export const Messages = ({ isMine, message, userId }: Props) => {
   return (
     <View>
       <ThemedText type="small" className={`${messageStyle.alignment}`}>
-        {isLoading ? <ActivityIndicator /> : data?.full_name + ' '}
+        {isLoading ? '.....' : data?.full_name + ' '}
         8:30
       </ThemedText>
       <ThemedText

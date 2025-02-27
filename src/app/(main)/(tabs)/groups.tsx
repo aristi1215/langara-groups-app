@@ -44,7 +44,7 @@ export default function Index() {
           </View>
         </View>
 
-        <SearchInput />
+        <SearchInput placeholder="Find your prefered groups" />
       </View>
 
       <View className="mt-10">

@@ -1,4 +1,4 @@
-import { FontAwesome } from "@expo/vector-icons";
+import { AntDesign, FontAwesome, MaterialCommunityIcons, MaterialIcons } from "@expo/vector-icons";
 import { FontAwesome6 } from "@expo/vector-icons";
 import { FontAwesome5 } from "@expo/vector-icons";
 
@@ -82,6 +82,33 @@ export const ShopBag = ({ size = 30, className, color }: Props) => (
 export const Star = ({ size = 30, className, color }: Props) => (
   <FontAwesome
     name="star"
+    size={size}
+    className={className}
+    color={color}
+  />
+);
+
+export const Find = ({ size = 30, className, color }: Props) => (
+  <AntDesign
+    name="find"
+    size={size}
+    className={className}
+    color={color}
+  />
+);
+
+export const Groups = ({ size = 30, className, color }: Props) => (
+  <MaterialIcons
+    name="groups"
+    size={size}
+    className={className}
+    color={color}
+  />
+);
+
+export const Shop = ({ size = 30, className, color }: Props) => (
+  <MaterialCommunityIcons
+    name="shopping-outline"
     size={size}
     className={className}
     color={color}
