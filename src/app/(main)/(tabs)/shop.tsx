@@ -1,4 +1,4 @@
-import { View, ScrollView, ActivityIndicator } from "react-native";
+import { View, ScrollView, ActivityIndicator, FlatList } from "react-native";
 import { ShopBag, UserIcon } from "@/assets/icons/icons";
 import { SearchInput } from "@/components/SearchInput";
 import { ThemedText } from "../../../components/ThemedText";
@@ -6,12 +6,14 @@ import { ProductCard } from "@/components/shop/ProductCard";
 import { CategoryCircle } from "@/components/shop/CategoryCircle";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import { useProductCategories } from "@/api/product_categories";
+import { useGetProducts } from "@/api/products";
 
 export default function index() {
   const { isLoading, data: productCategories, error } = useProductCategories();
+  const { data: products } = useGetProducts();
 
-  if(error){
-    console.error('error fetching the categories')
+  if (error) {
+    console.error("error fetching the categories");
   }
 
   return (
@@ -44,22 +46,27 @@ export default function index() {
           horizontal={true}
           showsHorizontalScrollIndicator={false}
         >
-          {
-          
-          productCategories ? 
-
-          productCategories?.map((category) => (
-            <CategoryCircle
-              image={category.image}
-              category={category.name}
-              key={category.name}
-            />
-          ))
-          : isLoading ? <View className="w-full items-center justify-center">
-            <ActivityIndicator/>
-          </View>
-          : <View></View>
-        }
+          {productCategories ? (
+            productCategories?.map((category) => (
+              <CategoryCircle
+                image={category.image}
+                categoryId={category.id}
+                name={category.name}
+                bucketName="product-categories"
+                key={category.name}
+              />
+            ))
+          ) : isLoading ? (
+            <View className="w-full items-center justify-center">
+              <ActivityIndicator />
+            </View>
+          ) : (
+            <View className="w-full items-center">
+              <ThemedText type="h3" className="text-center">
+                No categories found
+              </ThemedText>
+            </View>
+          )}
         </ScrollView>
 
         <ScrollView
@@ -74,7 +81,7 @@ export default function index() {
             <ThemedText type="h2">Top selling</ThemedText>
             <ThemedText type="h3">See All</ThemedText>
           </View>
-          <ScrollView
+          <FlatList
             contentContainerStyle={{
               flexDirection: "row",
               justifyContent: "space-evenly",
@@ -82,30 +89,45 @@ export default function index() {
               paddingHorizontal: 6,
               paddingVertical: 6,
             }}
+            data={products}
+            renderItem={({ item }) => (
+              <ProductCard
+                title={item.title}
+                price={item.price}
+                productId={item.id}
+                path="product-1.png"
+                bucketName="products"
+              />
+            )}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-          >
-            <ProductCard />
-            <ProductCard />
-          </ScrollView>
+          />
+
           <View className="flex-row justify-between my-4 w-full">
-            <ThemedText type="h2">Top selling</ThemedText>
+            <ThemedText type="h2">New In</ThemedText>
             <ThemedText type="h3">See All</ThemedText>
           </View>
-          <ScrollView
+          <FlatList
             contentContainerStyle={{
               flexDirection: "row",
               justifyContent: "space-evenly",
               gap: 20,
               paddingHorizontal: 6,
-              paddingVertical: 3,
+              paddingVertical: 6,
             }}
+            data={products}
+            renderItem={({ item }) => (
+              <ProductCard
+                title={item.title}
+                price={item.price}
+                productId={item.id}
+                path="product-1.png"
+                bucketName="products"
+              />
+            )}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
-          >
-            <ProductCard />
-            <ProductCard />
-          </ScrollView>
+          />
         </ScrollView>
       </SafeAreaView>
     </SafeAreaProvider>

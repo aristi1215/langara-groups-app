@@ -17,6 +17,8 @@ export const LeftArrow = ({ className, size = 40, color }: Props) => (
   />
 );
 
+
+
 export const SearchIcon = ({ size = 30, className, color }: Props) => (
   <FontAwesome name="search" size={size} className={className} color={color} />
 );

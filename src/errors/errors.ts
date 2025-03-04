@@ -12,3 +12,5 @@ export const GroupsApiError = createErrors('Error from the use user groups conte
 export const MessagesApiError = createErrors('Error from the messages api')
 export const UserProfileError = createErrors('Error fetching the user profile from the api')
 export const ProductCategoriesApiError = createErrors('Error from the product categories api')
+export const ProductsApiError = createErrors('Error from the product categories api')
+export const CategoriesApiError = createErrors('Error from the product categories api')

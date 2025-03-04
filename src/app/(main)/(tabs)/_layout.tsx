@@ -15,7 +15,7 @@ export default function TabsLayout() {
   return (
     <Tabs>
       <Tabs.Screen name="groups" options={{ headerShown: false, tabBarIcon: () => <Find /> }} />
-      <Tabs.Screen name="myGroups" options={{ headerTitle: 'My groups', tabBarIcon: () => <Groups /> }} />
+      <Tabs.Screen name="myGroups" options={{ headerTitle: 'My groups', tabBarIcon: () => <Groups />, title: 'My groups' }} />
       <Tabs.Screen name="shop" options={{ headerShown: false, tabBarIcon: () => <Shop /> }} />
     </Tabs>
   );

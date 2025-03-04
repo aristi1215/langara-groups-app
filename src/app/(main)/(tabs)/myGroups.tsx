@@ -2,9 +2,8 @@ import { View, Text, ActivityIndicator, FlatList } from "react-native";
 import React from "react";
 import { useAuthContext } from "@/context/AuthContextProvider";
 import { useUserGroups } from "../../../api/groups/index";
-import { ThemedText } from "@/components/ThemedText";
-import { Link } from "expo-router";
 import { MyGroupsCard } from "@/components/groups/MyGroupsCard";
+import { ErrorView } from "@/components/ErrorView";
 
 export default function MyGroupsScreen() {
   const { user } = useAuthContext();
@@ -20,12 +19,7 @@ export default function MyGroupsScreen() {
 
   if (isError) {
     console.error(error);
-    return (
-      <View className="flex-1 items-center justify-center">
-        <ThemedText type="h2">Sorry, and error has occurred</ThemedText>
-        <Link href={"/groups"}>Go back</Link>
-      </View>
-    );
+    return <ErrorView />;
   }
 
   return (
@@ -35,9 +29,9 @@ export default function MyGroupsScreen() {
         alignItems: "center",
         justifyContent: "center",
         gap: 30,
-        marginTop: 20,
+        paddingVertical: 20,
       }}
-      renderItem={({ item }) => <MyGroupsCard name={item.name} id={item.id} />}
+      renderItem={({ item }) => <MyGroupsCard name={item.name} id={item.id} banner={item.banner_path} />}
     />
   );
 }

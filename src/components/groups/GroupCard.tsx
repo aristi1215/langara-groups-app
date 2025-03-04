@@ -5,17 +5,20 @@ import { supabase } from "@/client/supabase";
 import { router } from "expo-router";
 import { useAuthContext } from "@/context/AuthContextProvider";
 import { useJoinGroups } from "@/api/groups";
+import { RemotePublicImage } from "../images/RemoteImage";
 
 interface Props {
   name: string;
   members?: number;
   id: number;
+  banner: string
 }
 
 export const GroupCard = ({
   name = "random group",
   members = 10,
   id,
+  banner
 }: Props) => {
   const { user } = useAuthContext();
   const {mutate: joinGroup } = useJoinGroups()
@@ -30,11 +33,12 @@ export const GroupCard = ({
   }
 
   return (
-    <View className={`bg-white rounded-3xl w-[20rem] h-[20rem] p-5 mr-10`}>
-      <Image
-        // source={imageUrl ? {uri: imageUrl} : require('@/assets/images/langara-logo.png')}
-        source={require("@/assets/images/langara-logo.png")}
-        className="w-full h-[45%] rounded-2xl"
+    <View className={`bg-white rounded-3xl w-[20rem] h-[20rem] p-5 mr-10 gap-2`}>
+      <RemotePublicImage
+      bucketName="groups-banners"
+      path={banner}
+      className="w-full h-[12rem] rounded-xl"
+
       />
       <ThemedText type="h3">{name}</ThemedText>
       <View className="flex-row justify-between items-center">
