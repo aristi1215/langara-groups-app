@@ -5,7 +5,6 @@ import { useUserGroups } from "../../../api/groups/index";
 import { MyGroupsCard } from "@/components/groups/MyGroupsCard";
 import { ErrorView } from "@/components/ErrorView";
 import { ThemedText } from "@/components/ThemedText";
-import { supabase } from "@/client/supabase";
 
 export default function MyGroupsScreen() {
   const { user } = useAuthContext();

@@ -21,13 +21,14 @@ const HeaderComponent = ({
       onChangeText={setSearch}
       value={search}
       placeholder="Search for a specific group"
-      className="bg-gray-900"
+      className="bg-gray-900 text-white"
     />
   </View>
 );
 
 const AllGroups = () => {
   const { data, error, isLoading } = useGroups();
+  const [search, setSearch] = useState("");
 
   if (isLoading) {
     return (
@@ -47,8 +48,6 @@ const AllGroups = () => {
       </View>
     );
   }
-
-  const [search, setSearch] = useState("");
 
   const filteredGroups = () => {
     return search === ""
@@ -75,7 +74,7 @@ const AllGroups = () => {
       }
       ListHeaderComponentStyle={{ alignSelf: "flex-start", marginLeft: 10 }}
       columnWrapperStyle={{ width: "100%", gap: 20 }}
-      renderItem={({ item }) => <AllGroupsCard name={item.name} />}
+      renderItem={({ item }) => <AllGroupsCard name={item.name} bucketName='groups-banners' path={item.banner_path} />}
     />
   );
 };
