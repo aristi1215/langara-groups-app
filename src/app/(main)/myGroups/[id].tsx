@@ -2,6 +2,7 @@ import {
   View,
   FlatList,
   TextInput,
+  Text,
   Pressable,
   ActivityIndicator,
 } from "react-native";
@@ -13,16 +14,24 @@ import { Clip, Picture, Face, SendMessage } from "@/assets/icons/icons";
 import { useInsertMessage, useReadMessages } from "@/api/messages";
 import { useAuthContext } from "@/context/AuthContextProvider";
 import { useSubscribeToMessages } from "../../../api/messages/index";
+import { ErrorView } from "@/components/ErrorView";
 
 ///MANEJAR ESTADOS DE ERROR Y DE CARGUILLA
 
 export default function ChatGroup() {
-  const { id: groupId } = useLocalSearchParams();
-  const groupIdNumber = parseInt(groupId[0]);
+  const { id: groupId, name, banner, members } = useLocalSearchParams();
+
+  console.log(name, banner, members);
+
+  const groupIdNumber = parseInt(Array.isArray(groupId) ? groupId[0] : groupId);
+  const bannerString = Array.isArray(banner) ? banner[0] : banner
+  const memberString = Array.isArray(members) ? members[0] : members
   const [messageText, setMessageText] = useState("");
   const { isLoading, data, error, isError } = useReadMessages(groupIdNumber);
   const { mutate: insertMessage } = useInsertMessage();
   const { user } = useAuthContext();
+
+  const groupName = "Computer Science Club";
 
   //Used to receive changes from the database
   useSubscribeToMessages();
@@ -35,11 +44,18 @@ export default function ChatGroup() {
     );
   }
 
+  if (isError) {
+    console.error(error);
+    return (
+      <ErrorView message="Oops, an error has occurred reading the messages" />
+    );
+  }
+
   return (
     <View>
       <Tabs.Screen
         options={{
-          header: () => <ChatHeader />,
+          header: () => <ChatHeader name={groupName} bucketName={'groups-banners'} path={bannerString} members={memberString} />,
           tabBarStyle: { display: "none" },
         }}
       />
@@ -52,11 +68,13 @@ export default function ChatGroup() {
         }}
         data={data}
         renderItem={({ item }) => {
-          return <Messages
-            isMine={item.user_id === user.id ? true : false}
-            message={item.message}
-            userId={item.user_id}
-          />
+          return (
+            <Messages
+              isMine={item.user_id === user.id ? true : false}
+              message={item.message}
+              userId={item.user_id}
+            />
+          );
         }}
       />
       <View className="flex-row absolute bottom-[5rem] h-[7rem] w-full bg-gray-150 items-center justify-between px-3">
@@ -72,7 +90,7 @@ export default function ChatGroup() {
             <Pressable
               onPress={() => {
                 setMessageText("");
-                return insertMessage({
+                insertMessage({
                   group_id: groupIdNumber,
                   message: messageText,
                   user_id: user.id,

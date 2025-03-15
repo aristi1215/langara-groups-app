@@ -13,7 +13,11 @@ interface Props {
 
 export const MyGroupsCard = ({ name, members = 10, id, banner }: Props) => {
   return (
-    <Pressable onPress={() => router.push(`/(main)/myGroups/${id}`)}>
+    <Pressable onPress={() => router.push(
+      { pathname: `/(main)/myGroups/${id}`,
+      params: {name, members,banner}
+
+    })}>
       <View className={`bg-white rounded-3xl w-[22rem] h-[20rem] p-5 pb-10`}>
         <RemotePublicImage path={banner} bucketName="groups-banners" className="h-[10rem] w-full" />
         <ThemedText type="h3">{name}</ThemedText>

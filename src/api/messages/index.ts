@@ -34,6 +34,7 @@ export const useInsertMessage = () => {
       message: string;
       user_id: string;
     }) => {
+      console.log('data received:', data)
       const { data: newMessage, error } = await supabase
         .from("messages")
         .insert({

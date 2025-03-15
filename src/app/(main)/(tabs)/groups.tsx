@@ -1,4 +1,12 @@
-import { View, TextInput, FlatList, ScrollView, Pressable } from "react-native";
+import {
+  View,
+  TextInput,
+  FlatList,
+  ScrollView,
+  Pressable,
+  Touchable,
+  TouchableOpacity,
+} from "react-native";
 import React, { useEffect, useState } from "react";
 import { ThemedText } from "@/components/ThemedText";
 import { SearchIcon } from "@/assets/icons/icons";
@@ -10,6 +18,7 @@ import { useGroups } from "@/api/groups";
 import { Link, router } from "expo-router";
 import { SearchInput } from "@/components/SearchInput";
 import { CategoryCircle } from "@/components/shop/CategoryCircle";
+import { supabase } from "@/client/supabase";
 
 export default function Index() {
   const { data: groupsData, error, isError, isLoading } = useGroups();
@@ -74,9 +83,7 @@ export default function Index() {
             <ThemedText type="h2" className="text-black mb-5">
               Choose by category
             </ThemedText>
-            <Pressable
-              onPress={() => router.push("/(main)/groups/AllCategories")}
-            >
+            <Pressable onPress={() => router.push("/(main)/groups/categories")}>
               <ThemedText type="h3" className="text-primary-default">
                 View All
               </ThemedText>
@@ -109,9 +116,11 @@ export default function Index() {
       <View className="px-6">
         <View className="flex-row justify-between mb-6">
           <ThemedText type="h2">Recommended groups</ThemedText>
-          <ThemedText type="h3" className="text-primary-default">
-            See all
-          </ThemedText>
+          <TouchableOpacity onPress={() => router.push('/(main)/groups/allGroups')}>
+            <ThemedText type="h3" className="text-primary-default">
+              View all
+            </ThemedText>
+          </TouchableOpacity>
         </View>
         {groupsData?.map((item) => (
           <SmallGroupCard

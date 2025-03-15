@@ -37,6 +37,36 @@ export default function mainLayout() {
           ),
         }}
       />
+      <Stack.Screen
+        name="groups/categories"
+        options={{
+          contentStyle: { backgroundColor: "white" },
+          headerShadowVisible: false,
+          headerTitle: "",
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.back()}>
+            <View className="bg-[#F4F4F4] rounded-full w-14 h-14 items-center justify-center">
+              <LeftArrow size={30}/>
+            </View>
+            </TouchableOpacity>
+          ),
+        }}
+      />
+      <Stack.Screen
+        name="groups/allGroups"
+        options={{
+          contentStyle: { backgroundColor: "white" },
+          headerShadowVisible: false,
+          headerTitle: "",
+          headerLeft: () => (
+            <TouchableOpacity onPress={() => router.back()}>
+            <View className="bg-[#F4F4F4] rounded-full w-14 h-14 items-center justify-center">
+              <LeftArrow size={30}/>
+            </View>
+            </TouchableOpacity>
+          ),
+        }}
+      />
 
     </Stack>
   );

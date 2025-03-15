@@ -4,6 +4,8 @@ import { useAuthContext } from "@/context/AuthContextProvider";
 import { useUserGroups } from "../../../api/groups/index";
 import { MyGroupsCard } from "@/components/groups/MyGroupsCard";
 import { ErrorView } from "@/components/ErrorView";
+import { ThemedText } from "@/components/ThemedText";
+import { supabase } from "@/client/supabase";
 
 export default function MyGroupsScreen() {
   const { user } = useAuthContext();
@@ -31,7 +33,16 @@ export default function MyGroupsScreen() {
         gap: 30,
         paddingVertical: 20,
       }}
-      renderItem={({ item }) => <MyGroupsCard name={item.name} id={item.id} banner={item.banner_path} />}
+      ListHeaderComponent={() => (
+        <>
+          <ThemedText type="h1" className="mt-10">
+            My groups
+          </ThemedText>
+        </>
+      )}
+      renderItem={({ item }) => (
+        <MyGroupsCard name={item.name} id={item.id} banner={item.banner_path} />
+      )}
     />
   );
 }

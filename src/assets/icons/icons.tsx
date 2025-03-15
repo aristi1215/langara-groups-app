@@ -116,3 +116,12 @@ export const Shop = ({ size = 30, className, color }: Props) => (
     color={color}
   />
 );
+
+export const ExpandArrow = ({ size = 30, className, color }: Props) => (
+  <MaterialIcons
+    name="expand-more"
+    size={size}
+    className={className}
+    color={color}
+  />
+);

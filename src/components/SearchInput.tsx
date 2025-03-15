@@ -7,14 +7,18 @@ interface Props extends TextInputProps  {
   searchIconColor?: string
 }
 
-export const SearchInput = ({ className, placeholderTextColor='white', searchIconColor='white', placeholder }: Props) => {
+export const SearchInput = ({ className, placeholderTextColor='white', searchIconColor='white', placeholder, onChangeText, onChange, value, defaultValue }: Props) => {
   return (
     <View className="flex-row items-center">
-      <SearchIcon size={20} className="absolute ml-5" color={searchIconColor} />
+      <SearchIcon size={20} className="absolute ml-5 z-50" color={searchIconColor}  />
       <TextInput
         className={`bg-gray-200/20 w-full rounded-xl pl-14 h-14 ${className}`}
         placeholder={placeholder}
-        placeholderTextColor={ placeholderTextColor}
+        placeholderTextColor={placeholderTextColor}
+        value={value}
+        onChangeText={onChangeText}
+        onChange={onChange}
+        defaultValue={defaultValue}
       />
     </View>
   );

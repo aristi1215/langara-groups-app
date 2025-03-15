@@ -11,7 +11,7 @@ type PagerViewRef = React.ElementRef<typeof PagerView>;
 export const OnboardingModal = () => {
   const ref = useRef<PagerViewRef>(null);
   const insets = useSafeAreaInsets();
-  const { setItem } = useLocalAsyncStorage('ONBOARDING_VIEWED');
+  const { setItem } = useLocalAsyncStorage('ONBOARDING_VIEWED2s');
 
   const handleGoToSignUp = () => {
     router.replace("/(auth)/sign-up");

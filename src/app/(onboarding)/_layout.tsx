@@ -8,7 +8,7 @@ export default function OnboardingLayout() {
   const {session, loading} = useAuthContext()
 
   if(session && !loading) {
-    router.push('/main/groups')
+    router.push('/(main)/(tabs)/groups')
     return
   }
 
