@@ -21,7 +21,15 @@ export default function events() {
           </View>
         </View>
       </View>
-      <FlatList contentContainerStyle={{paddingHorizontal: 20, marginTop: 20}} data={events} renderItem={EventCard} />
+      <FlatList
+        contentContainerStyle={{
+          paddingHorizontal: 20,
+          marginTop: 20,
+          gap: 10,
+        }}
+        data={events}
+        renderItem={EventCard}
+      />
     </View>
   );
 }
