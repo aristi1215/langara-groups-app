@@ -1,19 +1,32 @@
 import { View, Text, Image } from "react-native";
 import React from "react";
 import { ThemedText } from "../ThemedText";
+import { Link } from "expo-router";
 
-export const EventCard = () => {
+interface Props {
+  name: string;
+  description: string;
+  date: string;
+}
+
+export const EventCard = ({ name, description, date }: Props) => {
+  const eventInformation = JSON.stringify({name,description,date})
   return (
-    <View className="">
-      <Image />
-      <View>
-        <Text>Designers meetup 2022</Text>
-        <Text>03 October, 22</Text>
+    <Link href={`/events/${eventInformation}`}>
+      <View className="flex-row items-center gap-4 bg-white rounded-2xl p-1 h-32 w-full">
+        <Image
+          className="w-[35%] h-full rounded-xl"
+          source={require("@/assets/images/splash-icon.png")}
+        />
+        <View>
+          <ThemedText className="font-bold" adjustsFontSizeToFit>
+            {name}
+          </ThemedText>
+          <ThemedText type="p" adjustsFontSizeToFit>
+            {date}
+          </ThemedText>
+        </View>
       </View>
-      <View></View>
-      <ThemedText>
-        JOIN NOW
-      </ThemedText>
-    </View>
+    </Link>
   );
 };

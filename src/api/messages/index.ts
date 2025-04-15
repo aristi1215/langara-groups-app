@@ -3,9 +3,6 @@ import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { MessagesApiError } from "../../errors/errors";
 import { useEffect } from "react";
 
-///FOR THE MOMENT IN MISSING THE READING AND CREATION OF THE MESSAGE FILES
-//  REMEMBER IT
-
 export const useReadMessages = (groupId: number) => {
   return useQuery({
     queryKey: ["messages", groupId],

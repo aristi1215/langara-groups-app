@@ -135,3 +135,13 @@ export const FilterIcon = ({ size = 30, className, color }: Props) => (
     color={color}
   />
 );
+export const CloseIcon = ({ size = 30, className, color }: Props) => (
+  <AntDesign
+    name="close"
+    size={size}
+    className={className}
+    color={color}
+  />
+);
+
+

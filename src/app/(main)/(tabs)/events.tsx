@@ -6,8 +6,12 @@ import { FilterIcon } from "@/assets/icons/icons";
 import { EventCard } from "@/components/events/EventCard";
 
 export default function events() {
-  const events = new Array(10).fill("");
-
+  const events = new Array(10).fill({
+    name: "Designers meetup 2022",
+    description:
+      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos neque tenetur facilis totam, a quibusdam rerum soluta consectetur beatae dolor",
+    date: '03 October, 22'
+  });
   return (
     <View className="flex-1">
       <View className="bg-primary-default p-10 rounded-b-[3rem] items-center">
@@ -26,9 +30,10 @@ export default function events() {
           paddingHorizontal: 20,
           marginTop: 20,
           gap: 10,
+          paddingBottom: 30,
         }}
         data={events}
-        renderItem={EventCard}
+        renderItem={({item}) => <EventCard name={item.name} date={item.date} description={item.description} />}
       />
     </View>
   );

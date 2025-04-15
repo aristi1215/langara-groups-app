@@ -19,19 +19,20 @@ import { ErrorView } from "@/components/ErrorView";
 ///MANEJAR ESTADOS DE ERROR Y DE CARGUILLA
 
 export default function ChatGroup() {
-  const { id: groupId, name, banner, members } = useLocalSearchParams();
-
-  console.log(name, banner, members);
+  const {
+    id: groupId,
+    name: groupName,
+    banner,
+    members,
+  } = useLocalSearchParams();
 
   const groupIdNumber = parseInt(Array.isArray(groupId) ? groupId[0] : groupId);
-  const bannerString = Array.isArray(banner) ? banner[0] : banner
-  const memberString = Array.isArray(members) ? members[0] : members
+  const bannerString = Array.isArray(banner) ? banner[0] : banner;
+  const memberString = Array.isArray(members) ? members[0] : members;
   const [messageText, setMessageText] = useState("");
   const { isLoading, data, error, isError } = useReadMessages(groupIdNumber);
   const { mutate: insertMessage } = useInsertMessage();
   const { user } = useAuthContext();
-
-  const groupName = "Computer Science Club";
 
   //Used to receive changes from the database
   useSubscribeToMessages();
@@ -55,7 +56,14 @@ export default function ChatGroup() {
     <View>
       <Tabs.Screen
         options={{
-          header: () => <ChatHeader name={groupName} bucketName={'groups-banners'} path={bannerString} members={memberString} />,
+          header: () => (
+            <ChatHeader
+              name={Array.isArray(groupName) ? groupName[1] : groupName}
+              bucketName={"groups-banners"}
+              path={bannerString}
+              members={memberString}
+            />
+          ),
           tabBarStyle: { display: "none" },
         }}
       />
