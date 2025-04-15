@@ -125,3 +125,13 @@ export const ExpandArrow = ({ size = 30, className, color }: Props) => (
     color={color}
   />
 );
+
+
+export const FilterIcon = ({ size = 30, className, color }: Props) => (
+  <AntDesign
+    name="filter"
+    size={size}
+    className={className}
+    color={color}
+  />
+);

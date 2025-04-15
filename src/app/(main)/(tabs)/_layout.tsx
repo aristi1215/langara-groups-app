@@ -14,9 +14,27 @@ export default function TabsLayout() {
 
   return (
     <Tabs>
-      <Tabs.Screen name="groups" options={{ headerShown: false, tabBarIcon: () => <Find /> }} />
-      <Tabs.Screen name="myGroups" options={{ headerShown: false, tabBarIcon: () => <Groups /> }} />
-      <Tabs.Screen name="shop" options={{ headerShown: false, tabBarIcon: () => <Shop /> }} />
+      <Tabs.Screen
+        name="groups"
+        options={{ headerShown: false, tabBarIcon: () => <Find /> }}
+      />
+      <Tabs.Screen
+        name="myGroups"
+        options={{ headerShown: false, tabBarIcon: () => <Groups /> }}
+      />
+      <Tabs.Screen
+        name="events"
+        options={{
+          headerShown: false,
+          tabBarIcon: () => <Shop />,
+          headerShadowVisible: false,
+          headerTitleAlign: "center",
+        }}
+      />
+      <Tabs.Screen
+        name="shop"
+        options={{ headerShown: false, tabBarIcon: () => <Shop />, href: null }}
+      />
     </Tabs>
   );
 }

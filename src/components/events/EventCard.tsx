@@ -1,10 +1,10 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
-export const GroupCategoryCircle = ({}) => {
+export const EventCard = () => {
   return (
-    <View>
-      <Text>GroupCategoryCircle</Text>
+    <View className=''>
+      <Text>asdasd</Text>
     </View>
   )
 }

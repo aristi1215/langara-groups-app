@@ -126,7 +126,7 @@ export default function index() {
         )}
 
         {/* View made to dinamically show and hidden the component with the state of the search without the need to re render the component */}
-        <View className={`${search === "" ? "" : "hidden"}`}>
+        <View className={`${search === "" ? "" : "hidden"} flex-1`}>
           <View className="flex-row justify-between mt-5">
             <ThemedText type="h2">Categories</ThemedText>
             <ThemedText type="h3">See All</ThemedText>
@@ -138,6 +138,7 @@ export default function index() {
               gap: 10,
               marginVertical: 10,
               paddingBottom: 60,
+              flex: 1
             }}
             horizontal={true}
             showsHorizontalScrollIndicator={false}
