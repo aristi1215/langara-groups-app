@@ -4,14 +4,21 @@ import { SearchInput } from "@/components/SearchInput";
 import { ThemedText } from "@/components/ThemedText";
 import { FilterIcon } from "@/assets/icons/icons";
 import { EventCard } from "@/components/events/EventCard";
+import { useGetUnregisteredEvents } from "../../../api/events/index";
+import { LoadingView } from "@/components/LoadingView";
+import { useAuthContext } from "@/context/AuthContextProvider";
 
 export default function events() {
-  const events = new Array(10).fill({
-    name: "Designers meetup 2022",
-    description:
-      "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Quos neque tenetur facilis totam, a quibusdam rerum soluta consectetur beatae dolor",
-    date: '03 October, 22'
-  });
+  const {session} = useAuthContext()
+  if(!session){
+    return
+  }
+  const { data: events, error, isError, isLoading } = useGetUnregisteredEvents(session?.user.id);
+
+  if (isLoading) {
+    return <LoadingView />;
+  }
+
   return (
     <View className="flex-1">
       <View className="bg-primary-default p-10 rounded-b-[3rem] items-center">
@@ -33,7 +40,13 @@ export default function events() {
           paddingBottom: 30,
         }}
         data={events}
-        renderItem={({item}) => <EventCard name={item.name} date={item.date} description={item.description} />}
+        renderItem={({ item }) => (
+          <EventCard
+            name={item.name}
+            date={item.date}
+            description={item.description}
+          />
+        )}
       />
     </View>
   );
