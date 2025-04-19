@@ -13,12 +13,12 @@ export const EventCard = ({ name, description, date }: Props) => {
   const eventInformation = JSON.stringify({name,description: description.substring(0,150)+'...',date})
   return (
     <Link href={`/events/${eventInformation}`}>
-      <View className="flex-row items-center gap-4 bg-white rounded-2xl p-1 h-32 w-full">
+      <View className="flex-row items-center gap-4 bg-white rounded-2xl h-32 w-full">
         <Image
           className="w-[35%] h-full rounded-xl"
           source={require("@/assets/images/splash-icon.png")}
           resizeMode="cover"
-          resizeMethod="resize"
+          resizeMethod="scale"
         />
         <View>
           <ThemedText className="font-bold" adjustsFontSizeToFit>
