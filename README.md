@@ -1,50 +1,194 @@
-# Welcome to your Expo app 👋
+# Langara Groups App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+A modern student collaboration platform designed to help Langara College students discover classmates, create study groups, organize academic communities, and communicate more effectively outside the classroom.
 
-## Get started
+The application focuses on improving the student experience by making it easier to connect with peers based on courses, interests, and academic goals. Instead of relying on scattered Discord links or informal social media groups, the platform centralizes group discovery and collaboration into a dedicated environment built specifically for college students.
 
-1. Install dependencies
+Students can create groups, join communities related to their courses, and interact in a cleaner and more organized ecosystem that encourages collaboration and networking across the campus community.
 
-   ```bash
-   npm install
-   ```
+---
 
-2. Start the app
+# Features
 
-   ```bash
-    npx expo start
-   ```
+* User authentication and account management
+* Group creation and discovery
+* Course-based or interest-based communities
+* Real-time or asynchronous communication
+* Responsive modern UI
+* Student-focused social and collaboration experience
+* Scalable frontend and backend architecture
+* Database-driven persistence layer
 
-In the output, you'll find options to open the app in a
+---
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+# Why This Project Exists
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+Finding classmates and forming study groups is still surprisingly fragmented in many colleges. Students often depend on Reddit posts, Discord invitations, or messaging apps to connect with others. Discussions around study groups and student communities are very common within the Langara ecosystem. ([Reddit][1])
 
-## Get a fresh project
+This project aims to solve that problem by providing a centralized platform where students can:
 
-When you're ready, run:
+* Meet classmates
+* Create communities around courses
+* Collaborate academically
+* Build stronger campus connections
+* Improve communication outside the classroom
 
-```bash
-npm run reset-project
+The goal is to create a more connected academic environment while also giving students practical tools for collaboration and networking.
+
+---
+
+# Architecture
+
+The application follows a modern full-stack architecture with a clear separation between frontend, backend, and database responsibilities.
+
+```text
+Client (React / Frontend)
+        ↓
+REST API / Backend Server
+        ↓
+Database Layer
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Frontend
 
-## Learn more
+The frontend is responsible for:
 
-To learn more about developing your project with Expo, look at the following resources:
+* Rendering the user interface
+* Managing application state
+* Handling routing and navigation
+* Consuming backend APIs
+* Providing responsive user interactions
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+The UI was designed with scalability and maintainability in mind, using reusable components and modular organization.
 
-## Join the community
+## Backend
 
-Join our community of developers creating universal apps.
+The backend handles:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+* Authentication and authorization
+* API routing
+* Group and user management
+* Business logic
+* Database communication
+* Session and request handling
+
+The server acts as the central orchestration layer between the frontend and the persistence layer.
+
+## Database Layer
+
+The database stores:
+
+* User accounts
+* Group information
+* Membership relationships
+* Messages and interactions
+* Session-related data
+
+The schema is designed to support scalable social relationships and collaborative interactions between users.
+
+---
+
+# Tech Stack
+
+## Frontend
+
+* React
+* TypeScript / JavaScript
+* Tailwind CSS
+* React Router
+
+## Backend
+
+* Node.js
+* Express.js
+
+## Database
+
+* SQL / relational database architecture
+
+## Additional Technologies
+
+* REST APIs
+* Authentication systems
+* Responsive design principles
+* Component-based architecture
+
+---
+
+# Scalability Considerations
+
+The project was designed with future expansion in mind. Potential future improvements include:
+
+* Real-time messaging with WebSockets
+* Course synchronization
+* AI-powered group recommendations
+* Event and meetup systems
+* Notifications
+* Mobile application support
+* Role-based moderation systems
+* Advanced search and filtering
+
+---
+
+# Project Goals
+
+This project was built not only as a technical exercise, but also as a real-world solution to a common student problem:
+
+* Improve student collaboration
+* Encourage networking on campus
+* Reduce friction when finding study partners
+* Provide practical experience with full-stack development
+* Explore scalable application architecture
+
+---
+
+# What I Learned
+
+Through this project, I gained practical experience in:
+
+* Full-stack application architecture
+* API design
+* State management
+* Authentication flows
+* Database modeling
+* Frontend component systems
+* Responsive UI development
+* Organizing scalable codebases
+* Building products around real user problems
+
+---
+
+# Future Vision
+
+The long-term vision for the platform is to evolve from a simple group-management application into a complete student collaboration ecosystem for universities and colleges.
+
+Potential long-term directions include:
+
+* Cross-campus communities
+* AI-assisted networking
+* Academic recommendation systems
+* Study session scheduling
+* Career and project collaboration
+* Integration with institutional systems
+
+---
+
+# Installation
+
+```bash
+git clone <repository-url>
+
+cd langara-groups-app
+
+npm install
+
+npm run dev
+```
+
+---
+
+# Contributing
+
+Contributions, ideas, and feedback are welcome. The project is intended to continue evolving as both a learning experience and a practical collaboration platform for students.
+
+[1]: https://www.reddit.com/r/langara/comments/nd1q9f?utm_source=chatgpt.com "Anyone want to form a study group?"
